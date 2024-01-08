@@ -357,30 +357,33 @@ const LessonModal = ({
                   </button>
                 </div>
                 <ul style={{ ...listStyles, marginLeft: "16px" }}>
-                  {lesson.subLessions?.map((sublesson, subIndex) => (
-                    <li key={subIndex} style={listItemStyles}>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        {`${index + 1}.${subIndex + 1} ${
-                          sublesson.subLessionTitle
-                        }`}
-                        <button
-                          style={{
-                            marginLeft: "8px",
-                            backgroundColor: "#d32f2f",
-                            marginTop: "8px",
-                            color: "#fff",
-                            border: "none",
-                            borderRadius: "4px",
-                            padding: "8px",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => handleRemoveSublesson(sublesson.id)}
-                        >
-                          Remove Sublesson
-                        </button>
-                      </div>
-                    </li>
-                  ))}
+                  {lesson?.subLessions
+                    ?.slice()
+                    .reverse()
+                    .map((sublesson, subIndex) => (
+                      <li key={subIndex} style={listItemStyles}>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          {`${index + 1}.${subIndex + 1} ${
+                            sublesson.subLessionTitle
+                          }`}
+                          <button
+                            style={{
+                              marginLeft: "8px",
+                              backgroundColor: "#d32f2f",
+                              marginTop: "8px",
+                              color: "#fff",
+                              border: "none",
+                              borderRadius: "4px",
+                              padding: "8px",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => handleRemoveSublesson(sublesson.id)}
+                          >
+                            Remove Sublesson
+                          </button>
+                        </div>
+                      </li>
+                    ))}
                 </ul>
               </li>
             ))}

@@ -29,7 +29,7 @@ const QuizModal = ({ open, handleClose, modalBackgroundColor }) => {
   const [questionOption, setquestionOption] = useState([]);
   const [lessonData, setLessonData] = useState([]);
   const [expandedQuizzes, setExpandedQuizzes] = useState([]);
-
+  const uniqueLessionIds = new Set();
   const toggleQuizExpansion = (quizId) => {
     setExpandedQuizzes((prevExpandedQuizzes) => {
       const isExpanded = prevExpandedQuizzes.includes(quizId);
@@ -236,11 +236,19 @@ const QuizModal = ({ open, handleClose, modalBackgroundColor }) => {
                 }}
               >
                 <option value="">Select Lession</option>
-                {sublession.map((sub, index) => (
-                  <option key={index} value={sub.lession.id}>
-                    {sub.lession.lessionTilte}
-                  </option>
-                ))}
+                {sublession.map((sub, index) => {
+                  // Check if the lesson ID is already in the set
+                  if (!uniqueLessionIds.has(sub.lession.id)) {
+                    // If not, add it to the set and render the option
+                    uniqueLessionIds.add(sub.lession.id);
+                    return (
+                      <option key={index} value={sub.lession.id}>
+                        {sub.lession.lessionTilte}
+                      </option>
+                    );
+                  }
+                  return null;
+                })}
               </select>
             </div>
             <input

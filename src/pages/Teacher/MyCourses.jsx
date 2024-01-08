@@ -160,7 +160,7 @@ const MyCourses = () => {
                             variant="body2"
                             color="textSecondary"
                           >
-                            Students: {course.coursePrice}
+                            Price: {course.coursePrice}
                           </Typography>
                         </>
                       }
